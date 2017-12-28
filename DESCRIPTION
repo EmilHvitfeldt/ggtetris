@@ -1,0 +1,21 @@
+Package: ggtetris
+Type: Package
+Title: Create Tetris Chart Visualizations in R
+Version: 0.1.0
+Authors@R: person("Emil", "Hvitfeldt", email = "emilhhvitfeldt@gmail.com", role = c("aut", "cre"))
+Description: Tetris Charts is a variant of the stacked area chart where
+    the blocks are connected within groups.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Depends:
+    R (>= 3.2.0),
+    ggplot2 (>= 2.0.0)
+Imports: 
+    tibble,
+    magrittr,
+    dplyr,
+    purrr,
+    rlang,
+    RColorBrewer

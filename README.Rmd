@@ -1,0 +1,122 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+# ggtetris
+
+[![Travis build status](https://travis-ci.org/EmilHvitfeldt/ggtetris.svg?branch=master)](https://travis-ci.org/EmilHvitfeldt/ggtetris)
+
+The goal of ggtetris is to add a fun alternative to `geom_bar` that stack squared together to represent groups. This happens to have a resemblance to a tetris board hence name.  
+
+It used ggplot2 and returns a ggplot2 object.  
+
+The main star of the package is `ggtetris()` that produces a finished chart from a variety of inputs. 
+In addition the package also provides the `ggtetris_tidy()` function that transform the inputs of `ggtetris()` into a tidy format. `tetris_color()` provides a range of color schemes and the `scale_*_tetris()` family will allow you to use those color palettes directly to ggplot2.
+
+## Installation
+
+You can install ggtetris from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("EmilHvitfeldt/ggtetris")
+```
+
+## Examples
+
+```{r}
+library(ggtetris)
+```
+
+### Unnamed vectors
+
+```{r example}
+counts <- rep(5, 10)
+ggtetris(counts)
+```
+
+```{r}
+ggtetris(counts, colunms = 6)
+```
+
+```{r}
+raw_data <- rpois(100, lambda = 1)
+counts <- table(raw_data)
+ggtetris(counts, colors = tetris_color(palette = "Microsoft"), line_color = "black")
+```
+
+
+### Named vectors
+
+```{r}
+ggtetris(c('AA' = 30, 'BB' = 23, 'CC' = 10))
+```
+
+```{r}
+ggtetris(c('longer names' = 30, 'but some are missing' = 23, 10))
+```
+
+### Dataframes
+
+```{r}
+counts <- data.frame(names = letters[1:4],
+                     vals = c(80, 30, 20, 10))
+
+ggtetris(counts)
+```
+
+### Colors
+
+```{r echo=FALSE, fig.height=7}
+library(patchwork)
+
+p1 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Vadim Gerasimov"), xlab = "Vadim Gerasimov") +
+  theme(legend.position = "none")
+p2 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Microsoft"), xlab = "Microsoft") +
+  theme(legend.position = "none")
+p3 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Sega"), xlab = "Sega") + 
+  theme(legend.position = "none")
+p4 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "The New Tetris"), xlab = "The New Tetris") +
+  theme(legend.position = "none")
+p5 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "The Tetris Company"), xlab = "The Tetris Company") +
+  theme(legend.position = "none")
+p6 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Atari"), xlab = "Atari") +
+  theme(legend.position = "none")
+p7 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "The Soviet Mind Game"), xlab = "The Soviet Mind Game") +
+  theme(legend.position = "none")
+p8 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Tetris DX"), xlab = "Tetris DX") +
+  theme(legend.position = "none")
+p9 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Super Tetris 3"), xlab = "Super Tetris 3") +
+  theme(legend.position = "none")
+p10 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "Tetris Plus"), xlab = "Tetris Plus") +
+  theme(legend.position = "none")
+p11 <- ggtetris(rep(7, 7), colors = tetris_color(palette = "The Next Tetris"), xlab = "The Next Tetris") +
+  theme(legend.position = "none")
+  
+p1 + p2 + p3 + p4 + p5 + p6 + p7 + p8 + p9 + p10 + p11 + plot_layout(ncol = 4)
+```
+
+## miscellaneous
+
+```{r}
+vec_named <- c('AA' = 3, 'BB' = 2, 'CC' = 1)
+ggtetris_tidy(vec_named)
+```
+
+```{r}
+dsamp <- diamonds[sample(nrow(diamonds), 1000), ]
+ggplot(dsamp, aes(carat, price)) +
+  geom_point(aes(colour = color)) + 
+  scale_colour_tetris(palette = "Sega")
+```
+
+
