@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 [![Travis build status](https://travis-ci.org/EmilHvitfeldt/ggtetris.svg?branch=master)](https://travis-ci.org/EmilHvitfeldt/ggtetris)
 
-The goal of ggtetris is to add a fun alternative to `geom_bar` that stack squared together to represent groups. This happens to have a resemblance to a tetris board hence name.  
+The goal of **ggtetris** is to add a fun alternative to `geom_bar` that stack squared together to represent groups. This happens to have a resemblance to a tetris board hence name.  
 
 It used ggplot2 and returns a ggplot2 object.  
 
@@ -24,7 +24,7 @@ In addition the package also provides the `ggtetris_tidy()` function that transf
 
 ## Installation
 
-You can install ggtetris from github with:
+You can install **ggtetris** from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
